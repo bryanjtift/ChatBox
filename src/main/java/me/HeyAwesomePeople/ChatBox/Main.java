@@ -82,6 +82,8 @@ public class Main {
                 register.setText("Username taken!");
             } else if (line.startsWith("MESSAGE")) {
                 chat.printLine(line.substring(8) + "\n");
+            } else if (line.startsWith("USERJOIN")) {
+                chat.addUser(line.substring(9));
             }
         }
     }

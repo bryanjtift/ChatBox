@@ -9,6 +9,9 @@ public class ChatView {
     JButton logout = new JButton("Logout");
     JTextArea chat = new JTextArea();
 
+    GridBagConstraints c = new GridBagConstraints();
+    JPanel usersList = new JPanel();
+
     private ClassLoader classLoader;
 
     public ChatView() {
@@ -31,9 +34,13 @@ public class ChatView {
             c.weighty = 1;
             c.anchor = GridBagConstraints.NORTH;
             c.gridy = 0;
-            left.add(userBox(), c);
-            c.anchor = GridBagConstraints.SOUTH;
+            left.add(userBox("PersonalUser"), c);
             c.gridy = 1;
+            c.anchor = GridBagConstraints.NORTH;
+            left.add(usersList(), c);
+            c.fill = GridBagConstraints.HORIZONTAL;
+            c.anchor = GridBagConstraints.SOUTH;
+            c.gridy = 2;
             left.add(logoutButton(), c);
         }
 
@@ -81,6 +88,29 @@ public class ChatView {
         chat.setText(null);
     }
 
+    public void addUser(String username) {
+        c.gridy += 1;
+        JPanel box1 = userBox(username);
+        box1.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+        usersList.add(box1, c);
+        frame.validate();
+        frame.repaint();
+    }
+
+    private JScrollPane usersList() {
+        usersList.setLayout(new GridBagLayout());
+        c.fill = GridBagConstraints.VERTICAL;
+        c.anchor = GridBagConstraints.WEST;
+        c.weighty = 1;
+        c.weightx = 1;
+        c.gridx = 0;
+
+        JScrollPane pane = new JScrollPane(usersList);
+        pane.setBorder(BorderFactory.createEmptyBorder());
+
+        return pane;
+    }
+
     private JPanel logoutButton() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
@@ -93,7 +123,7 @@ public class ChatView {
         return panel;
     }
 
-    private JPanel userBox() {
+    private JPanel userBox(String user) {
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -106,7 +136,7 @@ public class ChatView {
         Image img = icon.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT);
         panel.add(new JLabel(new ImageIcon(img)), c);
 
-        JLabel username = new JLabel("ThisIsUsername");
+        JLabel username = new JLabel(user);
         c.gridx = 1;
         panel.add(username, c);
 
