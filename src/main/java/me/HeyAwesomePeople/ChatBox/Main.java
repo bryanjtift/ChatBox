@@ -13,28 +13,31 @@ public class Main {
 
     private RegisterView register;
     private LoginView login;
-    
+
     private ChatView chat;
 
-    public Main() throws IOException {
+    private Main() throws IOException {
         login = new LoginView();
         register = new RegisterView();
         chat = new ChatView();
+
         login.showFrame();
+
+        register.loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                login.showFrame();
+                register.removeFrame();
+            }
+        });
+
+        register.regButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                out.println("REGISTER " + register.getUsername() + ":" + register.getPassword());
+            }
+        });
 
         login.regButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                register.loginButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        login.showFrame();
-                        register.removeFrame();
-                    }
-                });
-                register.regButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        out.println("REGISTER " + register.getUsername() + ":" + register.getPassword());
-                    }
-                });
                 register.showFrame();
                 login.removeFrame();
             }
@@ -50,6 +53,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 chat.removeFrame();
                 login.showFrame();
+                out.println("LOGOUT");
             }
         });
     }
