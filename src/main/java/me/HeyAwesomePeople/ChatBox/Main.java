@@ -15,8 +15,6 @@ public class Main {
     private LoginView login;
     private ChatView chat;
 
-    private Application app;
-
     public Main() throws IOException {
         login = new LoginView();
         register = new RegisterView();
