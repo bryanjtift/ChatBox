@@ -13,6 +13,7 @@ public class Main {
 
     private RegisterView register;
     private LoginView login;
+    
     private ChatView chat;
 
     public Main() throws IOException {
