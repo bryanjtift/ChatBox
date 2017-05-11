@@ -32,7 +32,7 @@ public class Main {
 
         register.regButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                out.println("REGISTER " + register.getUsername() + ":" + register.getPassword());
+                out.println("0x02 " + register.getUsername() + ":" + register.getPassword());
             }
         });
 
@@ -45,7 +45,7 @@ public class Main {
 
         login.loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                out.println("LOGIN " + login.getUsername() + ":" + login.getPassword());
+                out.println("0x01 " + login.getUsername() + ":" + login.getPassword());
             }
         });
 
@@ -54,6 +54,13 @@ public class Main {
                 chat.removeFrame();
                 login.showFrame();
                 out.println("LOGOUT");
+            }
+        });
+
+        chat.input.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                out.println("0x03 OUT " + chat.input.getText());
+                chat.input.setText("");
             }
         });
     }

@@ -8,6 +8,7 @@ public class ChatView {
     private JFrame frame = new JFrame("ChatterBox3000");
     JButton logout = new JButton("Logout");
     JTextArea chat = new JTextArea();
+    JTextField input = new JTextField();
 
     GridBagConstraints c = new GridBagConstraints();
     JPanel usersList = new JPanel();
@@ -171,7 +172,6 @@ public class ChatView {
         c.weightx = 1;
         c.weighty = 1;
 
-        JTextField input = new JTextField();
         input.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         JScrollPane inPane = new JScrollPane(input, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
